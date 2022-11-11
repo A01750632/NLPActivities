@@ -30,7 +30,7 @@ class Translation_APIS:
             }
             headers = {
             "content-type": "application/json",
-            "X-RapidAPI-Key": "7d2197faa6msh22bfea21ec22ee0p1525d0jsn475c30e703e9",
+            "X-RapidAPI-Key": "key",
             "X-RapidAPI-Host": "deepl-translator.p.rapidapi.com"
             }
 
