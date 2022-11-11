@@ -7,8 +7,7 @@ def predict_sentiment(filename):
     text = open(filename)
     lines = text.readlines()
     cleanLines = []    
-    for line in lines:
-        clean_words = line.translate(",.;@#?!&$")  
+    for line in lines: 
         regex_sub = re.sub(r"[,.;\"@#?!&$]+", ' ', line)  
         regex_sub = re.sub(r"\s+", ' ', regex_sub)
         cleanLines.append(regex_sub)
