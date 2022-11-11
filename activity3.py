@@ -60,6 +60,3 @@ AverageSecondAPI = np.mean(SecondAPIscores)
 
 print(f"First API Scores {AverageFistAPI}")
 print(f"First API Scores {AverageSecondAPI}")
-
-
-

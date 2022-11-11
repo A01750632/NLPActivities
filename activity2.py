@@ -6,7 +6,6 @@ from flair.embeddings import WordEmbeddings, StackedEmbeddings, TokenEmbeddings
 from typing import List
 import matplotlib.pyplot as plt
 import pandas as pd        
-from flair.training_utils import EvaluationMetric
 
 N_EXAMPLES_TO_TRAIN = 0.1
 # define columns
