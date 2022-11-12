@@ -7,7 +7,7 @@ with the commnad conda list -e > requirements.txt
 
 ### Keys
 
-To generaate the keys of the second API used in the third task
+To generate the keys of the second API used in the third task
 
 follow this steps:
 
@@ -32,9 +32,8 @@ below the "Test Endpoint" blue button on the "Header Parameters" section, the ke
 
 ### Test
 
-All the test are on the file test.py if you run this file, are the test are run automatically
+All the test are on the file test.py if you run this file, the test are run automatically
  
 ### Run the main code of the tasks
 
 to run it just simply run the "run.py" file, that it already contains the instructions to run the code
- 
