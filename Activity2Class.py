@@ -8,7 +8,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 class NER_training_model:
-    def __init__(self,Path_To_Data,PERCENT_OF_DATASET_TO_TRAIN):
+    def __init__(self,Path_To_Data = "dataTweeter",PERCENT_OF_DATASET_TO_TRAIN =0.1):
+        print(f'\n{"":=^60}\n{"Second Task":=^60}\n{"":=^60}\n')
         self.PERCENT_OF_DATASET_TO_TRAIN = PERCENT_OF_DATASET_TO_TRAIN
         # define columns
         columns = {0 : 'text', 1 : 'ner'}
@@ -19,7 +20,6 @@ class NER_training_model:
                                     train_file = 'train.txt',
                                     test_file = 'test.txt',
                                     dev_file = 'dev.txt')
-        
         # tag to predict
         tag_type = 'ner'
         # make tag dictionary from the corpus
@@ -38,12 +38,9 @@ class NER_training_model:
                                             tag_type=tag_type,
                                             use_crf=True)
     def train(self,learning_rate = 0.02, max_epochs = 10, mini_batch_size = 32):
-        print("--- 1 Original ---")
-        print(self.corpus)
-        downsample = self.corpus.downsample(self.PERCENT_OF_DATASET_TO_TRAIN)
-
-        print("--- 2 Downsampled ---")
-        print(downsample)
+        print(f'\n{"":=^80}\n"Corpus original: " {self.corpus}\n{"":=^80}\n')
+        self.corpus.downsample(self.PERCENT_OF_DATASET_TO_TRAIN)
+        print(f'\n{"":=^80}\n"Corpus with downsample: " {self.corpus}\n{"":=^80}\n')
         trainer : ModelTrainer = ModelTrainer(self.tagger, self.corpus)
         trainer.train('resources/taggers/example-ner',
                     learning_rate=learning_rate,
@@ -56,4 +53,5 @@ class NER_training_model:
         plt.plot(trainLog["EPOCH"],trainLog["TRAIN_LOSS"],'r--')
         plt.plot(trainLog["EPOCH"],trainLog["DEV_LOSS"],'y')
         plt.title('Loss')
+        plt.legend(["TRAIN LOSS", "DEV LOSS"], loc ="upper right")
         plt.show()

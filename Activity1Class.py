@@ -2,7 +2,8 @@ from transformers import pipeline
 import re
 
 class Sentiment_Analysis:
-    def __init__(self,filename):
+    def __init__(self,filename = "tiny_movie_reviews_dataset.txt"):
+        print(f'\n{"":=^60}\n{"First Task":=^60}\n{"":=^60}\n')
         self.filename = filename
         text = open(self.filename)
         lines = text.readlines()
@@ -15,6 +16,7 @@ class Sentiment_Analysis:
     
     def prediction(self,sentiment_model = pipeline("sentiment-analysis")):
         dictionary = sentiment_model(self.cleanLines)
+        print(f'\n{"":=^60}\n{"Labels from sentiment Analysis":=^60}\n{"":=^60}\n')
         for prediction in dictionary:
             print(prediction["label"])
 

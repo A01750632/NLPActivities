@@ -4,17 +4,20 @@ import numpy as np
 
 class Translation_APIS:
     def __init__(self):
+        print(f'\n{"":=^60}\n{"Third Task":=^60}\n{"":=^60}\n')
         self.url = 'https://translate.argosopentech.com/translate'
-        self.url2 = 'https://deepl-translator.p.rapidapi.com/translate'
+        self.url2 = 'https://text-translator2.p.rapidapi.com/translate'
         self.Traduction1List = []
         self.Traduction2List = []
 
-    def Traduction(self,Filename = 'europarl-v7.es-en.en',LenguageSource = 'en',LenguageTarget = 'es'):
+    def readfile(self,Filename = 'europarl-v7.es-en.en'):
         textOriginal = open(Filename, "r",encoding="utf-8")
-        linesOriginal = textOriginal.readlines()
-        FileLen = len(linesOriginal)
+        self.linesOriginal = textOriginal.readlines()
+        self.FileLen = len(self.linesOriginal)
+
+    def Traduction(self,LenguageSource = 'en',LenguageTarget = 'es'):
         contador = 1
-        for lineOriginal in linesOriginal:
+        for lineOriginal in self.linesOriginal:
             myobj = {'q': lineOriginal,
                 'source': LenguageSource,
                 'target': LenguageTarget}
@@ -23,24 +26,20 @@ class Translation_APIS:
             textTranslated1 = translation["translatedText"]
             self.Traduction1List.append(textTranslated1)
             print(f'First API Translation: {textTranslated1[:-1]}')
-            payload = {
-            "text": lineOriginal,
-            "source": LenguageSource.upper(),
-            "target": LenguageTarget.upper()
-            }
+            payload = f"source_language={LenguageSource}&target_language={LenguageTarget}&text={lineOriginal}"
             headers = {
-            "content-type": "application/json",
-            "X-RapidAPI-Key": "key",
-            "X-RapidAPI-Host": "deepl-translator.p.rapidapi.com"
+                "content-type": "application/x-www-form-urlencoded",
+                "X-RapidAPI-Key": "key",
+                "X-RapidAPI-Host": "text-translator2.p.rapidapi.com"
             }
-
-            response2 = requests.request("POST", self.url2, json=payload, headers=headers)
-            translation2 = json.loads(response2.text)
+            
+            response2 = requests.request("POST", self.url2, data=payload, headers=headers)
+            translation2 = json.loads(response2.text)   
             print(translation2)
-            textTranslated2 = translation2["text"]
+            textTranslated2 = translation2["data"]["translatedText"]
             self.Traduction2List.append(textTranslated2)
             print(f'Second API Translation: {textTranslated2}')
-            print(f"Translating lines: line {contador} of {FileLen}")
+            print(f"Translating lines: line {contador} of {self.FileLen}")
             contador += 1
 
     def Bleu_Scores(self):
@@ -58,5 +57,6 @@ class Translation_APIS:
         AverageFistAPI = np.mean(firstAPIscores)
         AverageSecondAPI = np.mean(SecondAPIscores)
 
-        print(f"First API Scores {AverageFistAPI}")
-        print(f"First API Scores {AverageSecondAPI}")
+        print(f'\n{"":=^60}\n{"Average of Bleu Scores":=^60}\n{"":=^60}\n')
+        print(f'\n{"":=^60}\n"First API Scores" {AverageFistAPI}\n{"":=^60}\n')
+        print(f'{"":=^60}\n"Second API Scores" {AverageSecondAPI}\n{"":=^60}\n')
