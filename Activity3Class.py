@@ -1,6 +1,15 @@
+'''Author: Liam Garay Monroy A01750632
+Activity3Class for task3'''
+
 import requests
 import json
 import numpy as np
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+key = os.getenv("KEY_SECOND_API")
 
 class Translation_APIS:
     def __init__(self):
@@ -16,7 +25,7 @@ class Translation_APIS:
         self.FileLen = len(self.linesOriginal)
 
     def Traduction(self,LenguageSource = 'en',LenguageTarget = 'es'):
-        contador = 1
+        count = 1
         for lineOriginal in self.linesOriginal:
             myobj = {'q': lineOriginal,
                 'source': LenguageSource,
@@ -29,7 +38,7 @@ class Translation_APIS:
             payload = f"source_language={LenguageSource}&target_language={LenguageTarget}&text={lineOriginal}"
             headers = {
                 "content-type": "application/x-www-form-urlencoded",
-                "X-RapidAPI-Key": "key",
+                "X-RapidAPI-Key": key,
                 "X-RapidAPI-Host": "text-translator2.p.rapidapi.com"
             }
             
@@ -39,8 +48,8 @@ class Translation_APIS:
             textTranslated2 = translation2["data"]["translatedText"]
             self.Traduction2List.append(textTranslated2)
             print(f'Second API Translation: {textTranslated2}')
-            print(f"Translating lines: line {contador} of {self.FileLen}")
-            contador += 1
+            print(f"Translating lines: line {count} of {self.FileLen}")
+            count += 1
 
     def Bleu_Scores(self):
         ref = []

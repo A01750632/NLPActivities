@@ -5,6 +5,11 @@
 the requirements.txt file was generated in Anaconda 
 with the commnad conda list -e > requirements.txt
 
+### Create .env
+
+the example of the .env file is in the file "NotAnEnv"
+basically requires only the key of the second API from the third task.
+
 ### Keys
 
 To generate the keys of the second API used in the third task

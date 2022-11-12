@@ -1,3 +1,6 @@
+'''Author: Liam Garay Monroy A01750632
+Activity2Class for task2'''
+
 from flair.data import Corpus
 from flair.trainers import ModelTrainer
 from flair.models import SequenceTagger
@@ -7,26 +10,25 @@ from typing import List
 import matplotlib.pyplot as plt
 import pandas as pd
 
+
 class NER_training_model:
     def __init__(self,Path_To_Data = "dataTweeter",PERCENT_OF_DATASET_TO_TRAIN =0.1):
         print(f'\n{"":=^60}\n{"Second Task":=^60}\n{"":=^60}\n')
         self.PERCENT_OF_DATASET_TO_TRAIN = PERCENT_OF_DATASET_TO_TRAIN
-        # define columns
+        # define columns that we are going to use
         columns = {0 : 'text', 1 : 'ner'}
-        # directory where the data resides
+        # directory where de data is stored
         self.Path_To_Data = Path_To_Data
         # initializing the corpus
         self.corpus = ColumnCorpus(self.Path_To_Data, columns,
                                     train_file = 'train.txt',
                                     test_file = 'test.txt',
                                     dev_file = 'dev.txt')
-        # tag to predict
         tag_type = 'ner'
         # make tag dictionary from the corpus
         tag_dictionary = self.corpus.make_label_dictionary(label_type=tag_type)
         embedding_types : List[TokenEmbeddings] = [
                 WordEmbeddings('glove'),
-                ## other embeddings
                 ]
 
         self.embeddings : StackedEmbeddings = StackedEmbeddings(
@@ -48,6 +50,7 @@ class NER_training_model:
                     max_epochs=max_epochs)
         
     def plot(self):
+        '''Function to plot the results of the training'''
         trainLog = pd.read_csv('resources/taggers/example-ner/loss.tsv', sep='\t')
         print(trainLog)
         plt.plot(trainLog["EPOCH"],trainLog["TRAIN_LOSS"],'r--')

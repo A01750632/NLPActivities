@@ -1,0 +1,1 @@
+KEY_SECOND_API = "here_goes_the_key"

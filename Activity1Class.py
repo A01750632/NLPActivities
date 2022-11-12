@@ -1,3 +1,5 @@
+'''Author: Liam Garay Monroy A01750632
+Activity1Class for task1'''
 from transformers import pipeline
 import re
 
