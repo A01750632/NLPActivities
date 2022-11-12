@@ -42,3 +42,7 @@ All the test are on the file test.py if you run this file, the test are run auto
 ### Run the main code of the tasks
 
 to run it just simply run the "run.py" file, that it already contains the instructions to run the code
+
+### Side notes
+
+you can change some parameters on the run.py file to try different configurations
