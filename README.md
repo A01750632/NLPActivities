@@ -28,7 +28,7 @@ follow this steps:
 * they would appeear in this page: https://rapidapi.com/dickyagustin/api/text-translator2/
 below the "Test Endpoint" blue button on the "Header Parameters" section, the key is the one that is call "X-RapidAPI-Key"
 
-* (side note) if the keys are not there, make sure you are logged in your account and you click the "Test Endpoint" blue button
+* (side note) if the keys are not there, make sure you are logged in your account and you click the "Test Endpoint" blue button, and you are suscribed in the $0.00 button
 
 ### Test
 
