@@ -10,15 +10,19 @@ from typing import List
 import matplotlib.pyplot as plt
 import pandas as pd
 
+# Check the python naming convesntions fow when to use snake case, when to use camel, etc
+# https://peps.python.org/pep-0008/#prescriptive-naming-conventions
 
 class NER_training_model:
-    def __init__(self,Path_To_Data = "dataTweeter",PERCENT_OF_DATASET_TO_TRAIN =0.1):
+    def __init__(self,Path_To_Data = "dataTweeter", PERCENT_OF_DATASET_TO_TRAIN =0.1):
         print(f'\n{"":=^60}\n{"Second Task":=^60}\n{"":=^60}\n')
         self.PERCENT_OF_DATASET_TO_TRAIN = PERCENT_OF_DATASET_TO_TRAIN
         # define columns that we are going to use
         columns = {0 : 'text', 1 : 'ner'}
         # directory where de data is stored
-        self.Path_To_Data = Path_To_Data
+        self.Path_To_Data = Path_To_Data 
+        # super nit, no need to change right now. but in different envs, using paths like this will sometimes break. 
+        # better to do this: https://stackoverflow.com/questions/918154/relative-paths-in-python
         # initializing the corpus
         self.corpus = ColumnCorpus(self.Path_To_Data, columns,
                                     train_file = 'train.txt',
@@ -39,6 +43,7 @@ class NER_training_model:
                                             tag_dictionary=tag_dictionary,
                                             tag_type=tag_type,
                                             use_crf=True)
+
     def train(self,learning_rate = 0.02, max_epochs = 10, mini_batch_size = 32):
         print(f'\n{"":=^80}\n"Corpus original: " {self.corpus}\n{"":=^80}\n')
         self.corpus.downsample(self.PERCENT_OF_DATASET_TO_TRAIN)
@@ -51,7 +56,7 @@ class NER_training_model:
         
     def plot(self):
         '''Function to plot the results of the training'''
-        trainLog = pd.read_csv('resources/taggers/example-ner/loss.tsv', sep='\t')
+        trainLog = pd.read_csv('resources/taggers/example-ner/loss.tsv', sep='\t') # Nit: make the path a constant at the top of the file. same for above path 
         print(trainLog)
         plt.plot(trainLog["EPOCH"],trainLog["TRAIN_LOSS"],'r--')
         plt.plot(trainLog["EPOCH"],trainLog["DEV_LOSS"],'y')
