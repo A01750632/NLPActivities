@@ -9,18 +9,21 @@ from flair.embeddings import WordEmbeddings, StackedEmbeddings, TokenEmbeddings
 from typing import List
 import matplotlib.pyplot as plt
 import pandas as pd
+import os
 
+dirname = os.path.dirname(__file__)
+PATH_TO_DATA = os.path.join(dirname, 'dataTweeter')
+LOSS_TSV = os.path.join(dirname, 'resources/taggers/example-ner/loss.tsv')
 
 class NER_training_model:
-    def __init__(self,Path_To_Data = "dataTweeter",PERCENT_OF_DATASET_TO_TRAIN =0.1):
+    def __init__(self,PERCENT_OF_DATASET_TO_TRAIN =0.1):
         print(f'\n{"":=^60}\n{"Second Task":=^60}\n{"":=^60}\n')
         self.PERCENT_OF_DATASET_TO_TRAIN = PERCENT_OF_DATASET_TO_TRAIN
         # define columns that we are going to use
         columns = {0 : 'text', 1 : 'ner'}
         # directory where de data is stored
-        self.Path_To_Data = Path_To_Data
         # initializing the corpus
-        self.corpus = ColumnCorpus(self.Path_To_Data, columns,
+        self.corpus = ColumnCorpus(PATH_TO_DATA, columns,
                                     train_file = 'train.txt',
                                     test_file = 'test.txt',
                                     dev_file = 'dev.txt')
@@ -51,7 +54,7 @@ class NER_training_model:
         
     def plot(self):
         '''Function to plot the results of the training'''
-        trainLog = pd.read_csv('resources/taggers/example-ner/loss.tsv', sep='\t')
+        trainLog = pd.read_csv(LOSS_TSV, sep='\t')
         print(trainLog)
         plt.plot(trainLog["EPOCH"],trainLog["TRAIN_LOSS"],'r--')
         plt.plot(trainLog["EPOCH"],trainLog["DEV_LOSS"],'y')
