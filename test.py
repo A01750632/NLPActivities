@@ -1,3 +1,7 @@
+# Note: you will want to use pytest library with asserts, so that the tests fail assertions
+# if the output is not correct
+# see here: https://towardsdatascience.com/testing-best-practices-for-machine-learning-libraries-41b7d0362c95
+
 #Libraries needed for the tests
 from Activity1Class import Sentiment_Analysis
 from Activity2Class import NER_training_model
