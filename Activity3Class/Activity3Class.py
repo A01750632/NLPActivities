@@ -7,7 +7,9 @@ import numpy as np
 from dotenv import load_dotenv
 import os
 from nltk.translate.bleu_score import sentence_bleu
-
+dirname = os.path.dirname(__file__)
+FILENAME = os.path.join(dirname, '../europarl-v7.es-en.en')
+FILENAME2 = os.path.join(dirname, '../europarl-v7.es-en.es')
 load_dotenv()
 
 key = os.getenv("KEY_SECOND_API")
@@ -20,8 +22,8 @@ class Translation_APIS:
         self.Traduction1List = []
         self.Traduction2List = []
 
-    def readfile(self,Filename = 'europarl-v7.es-en.en'):
-        textOriginal = open(Filename, "r",encoding="utf-8")
+    def readfile(self):
+        textOriginal = open(FILENAME, "r",encoding="utf-8")
         self.linesOriginal = textOriginal.readlines()
         self.FileLen = len(self.linesOriginal)
         textOriginal.close()
@@ -56,7 +58,7 @@ class Translation_APIS:
         ref = []
         firstAPIscores = []
         SecondAPIscores = []
-        textLanguage = open("europarl-v7.es-en.es", "r",encoding="utf-8")
+        textLanguage = open(FILENAME2, "r",encoding="utf-8")
         linesLanguage = textLanguage.readlines()
         from nltk.translate.bleu_score import sentence_bleu
         for lineLanguage in linesLanguage:

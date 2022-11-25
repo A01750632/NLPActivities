@@ -12,8 +12,8 @@ import pandas as pd
 import os
 
 dirname = os.path.dirname(__file__)
-PATH_TO_DATA = os.path.join(dirname, 'dataTweeter')
-LOSS_TSV = os.path.join(dirname, 'resources/taggers/example-ner/loss.tsv')
+PATH_TO_DATA = os.path.join(dirname, '../dataTweeter')
+LOSS_TSV = os.path.join(dirname, '../resources/taggers/example-ner/loss.tsv')
 
 class NER_training_model:
     def __init__(self,PERCENT_OF_DATASET_TO_TRAIN =0.1):

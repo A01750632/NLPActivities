@@ -1,7 +1,7 @@
 #Libraries needed for the tests
-from Activity1Class import Sentiment_Analysis
-from Activity2Class import NER_training_model
-from Activity3Class import Translation_APIS
+from Activity1Class.Activity1Class import Sentiment_Analysis
+from Activity2Class.Activity2Class import NER_training_model
+from Activity3Class.Activity3Class import Translation_APIS
 
 #-------------------------- Test Task 1 ------------------------------------
 print(f'\n{"":=^60}\n{"Test Task 1":=^60}\n{"":=^60}\n')

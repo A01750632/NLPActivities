@@ -1,6 +1,9 @@
-from Activity1Class import Sentiment_Analysis
-from Activity2Class import NER_training_model
-from Activity3Class import Translation_APIS
+from Activity1Class.Activity1Class import Sentiment_Analysis
+from Activity2Class.Activity2Class import NER_training_model
+from Activity3Class.Activity3Class import Translation_APIS
+
+
+#Task 1
 
 #The filename can be change inside the function
 
@@ -9,11 +12,10 @@ from Activity3Class import Translation_APIS
 Sentiment_Analysis_Object = Sentiment_Analysis()
 Sentiment_Analysis_Object.prediction()
 
-
+#Task 2
 
 #the training percentage can be modified
 #PERCENT_OF_DATASET_TO_TRAIN = 0.1
-
 
 '''#Ner_training_model_Object = NER_training_model(PERCENT_OF_DATASET_TO_TRAIN)
 #the default value of PERCENT_OF_DATASET_TO_TRAIN is 0.1
@@ -23,12 +25,15 @@ Ner_training_model_Object = NER_training_model()
 Ner_training_model_Object.train()
 Ner_training_model_Object.plot()'''
 
+
+#Task 3
+
 #Test faile can be modified
 #Test_Apis.readfile("task3TextTest.txt")
 
-Translation_APIS_object = Translation_APIS()
+'''Translation_APIS_object = Translation_APIS()
 Translation_APIS_object.readfile()
 #also the traduction target and source lenguage can be modified
 #Translation_APIS_object.Traduction(self,LenguageSource = 'en',LenguageTarget = 'es'):
 Translation_APIS_object.Traduction()
-Translation_APIS_object.Bleu_Scores()
+Translation_APIS_object.Bleu_Scores()'''
