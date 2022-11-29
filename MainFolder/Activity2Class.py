@@ -42,6 +42,7 @@ class NER_training_model:
                                             tag_dictionary=tag_dictionary,
                                             tag_type=tag_type,
                                             use_crf=True)
+
     def train(self,learning_rate = 0.02, max_epochs = 10, mini_batch_size = 32):
         print(f'\n{"":=^80}\n"Corpus original: " {self.corpus}\n{"":=^80}\n')
         self.corpus.downsample(self.PERCENT_OF_DATASET_TO_TRAIN)
@@ -51,6 +52,13 @@ class NER_training_model:
                     learning_rate=learning_rate,
                     mini_batch_size=mini_batch_size,
                     max_epochs=max_epochs)
+
+    
+    def downsample_test(self):
+        print(f'\n{"":=^80}\n"Corpus original: " {self.corpus}\n{"":=^80}\n')
+        self.corpus.downsample(self.PERCENT_OF_DATASET_TO_TRAIN)
+        print(f'\n{"":=^80}\n"Corpus with downsample: " {self.corpus}\n{"":=^80}\n')
+        return f"{self.corpus}"
         
     def plot(self):
         '''Function to plot the results of the training'''

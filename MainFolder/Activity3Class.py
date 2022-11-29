@@ -22,8 +22,8 @@ class Translation_APIS:
         self.Traduction1List = []
         self.Traduction2List = []
 
-    def readfile(self):
-        textOriginal = open(FILENAME, "r",encoding="utf-8")
+    def readfile(self,filename = FILENAME):
+        textOriginal = open(filename, "r",encoding="utf-8")
         self.linesOriginal = textOriginal.readlines()
         self.FileLen = len(self.linesOriginal)
         textOriginal.close()
@@ -54,16 +54,15 @@ class Translation_APIS:
             print(f"Translating lines: line {count} of {self.FileLen}")
             count += 1
 
-    def Bleu_Scores(self):
+    def Bleu_Scores(self,filename2 = FILENAME2):
         ref = []
         firstAPIscores = []
         SecondAPIscores = []
-        textLanguage = open(FILENAME2, "r",encoding="utf-8")
+        textLanguage = open(filename2, "r",encoding="utf-8")
         linesLanguage = textLanguage.readlines()
-        from nltk.translate.bleu_score import sentence_bleu
         for lineLanguage in linesLanguage:
             firstAPIscores.append(sentence_bleu(self.Traduction1List,lineLanguage))
-            SecondAPIscores.append(sentence_bleu(self.Traduction1List,lineLanguage))
+            SecondAPIscores.append(sentence_bleu(self.Traduction2List,lineLanguage))
 
         #Average score
         AverageFirstAPI = np.mean(firstAPIscores)
@@ -72,3 +71,4 @@ class Translation_APIS:
         print(f'\n{"":=^60}\n{"Average of Bleu Scores":=^60}\n{"":=^60}\n')
         print(f'\n{"":=^60}\n"First API Scores" {AverageFirstAPI}\n{"":=^60}\n')
         print(f'{"":=^60}\n"Second API Scores" {AverageSecondAPI}\n{"":=^60}\n')
+        return AverageFirstAPI, AverageSecondAPI

@@ -35,5 +35,10 @@ class Sentiment_Analysis:
         for prediction in dictionary:
             print(prediction["label"])
 
+    def prediction_test(self,sentiment_model = pipeline("sentiment-analysis")):
+        dictionary = sentiment_model(self.cleaned_lines)
+        print(f'\n{"":=^60}\n{"Test for Class 1 passed":=^60}\n{"":=^60}\n')
+        return dictionary 
+
 
     
