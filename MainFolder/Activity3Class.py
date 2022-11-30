@@ -19,26 +19,26 @@ class Translation_APIS:
         print(f'\n{"":=^60}\n{"Third Task":=^60}\n{"":=^60}\n')
         self.argos_url = 'https://translate.argosopentech.com/translate'
         self.rapidapi_url = 'https://text-translator2.p.rapidapi.com/translate'
-        self.Traduction1List = []
-        self.Traduction2List = []
+        self.traduction_1List = []
+        self.traduction_2List = []
 
     def readfile(self,filename = FILENAME):
         textOriginal = open(filename, "r",encoding="utf-8")
-        self.linesOriginal = textOriginal.readlines()
-        self.FileLen = len(self.linesOriginal)
+        self.lines_original = textOriginal.readlines()
+        self.FileLen = len(self.lines_original)
         textOriginal.close()
 
-    def Traduction(self,LanguageSource = 'en',LanguageTarget = 'es'):
-        for count, lineOriginal in enumerate(self.linesOriginal):
-            request = {'q': lineOriginal, 
-                'source': LanguageSource,
-                'target': LanguageTarget}
+    def Traduction(self,language_source = 'en',language_target = 'es'):
+        for count, line_original in enumerate(self.lines_original):
+            request = {'q': line_original, 
+                'source': language_source,
+                'target': language_target}
             response1 = requests.request("POST", self.argos_url, data=json.dumps(request), headers={"content-type": "application/json"})
             translation = json.loads(response1.text)
-            textTranslated1 = translation["translatedText"]
-            self.Traduction1List.append(textTranslated1)
-            print(f'First API Translation: {textTranslated1[:-1]}')
-            payload = f"source_language={LanguageSource}&target_language={LanguageTarget}&text={lineOriginal}"
+            text_translated1 = translation["translatedText"]
+            self.traduction_1List.append(text_translated1)
+            print(f'First API Translation: {text_translated1[:-1]}')
+            payload = f"source_language={language_source}&target_language={language_target}&text={line_original}"
             headers = {
                 "content-type": "application/x-www-form-urlencoded",
                 "X-RapidAPI-Key": key,
@@ -49,26 +49,25 @@ class Translation_APIS:
             translation2 = json.loads(response2.text)   
             print(translation2)
             textTranslated2 = translation2["data"]["translatedText"]
-            self.Traduction2List.append(textTranslated2)
+            self.traduction_2List.append(textTranslated2)
             print(f'Second API Translation: {textTranslated2}')
             print(f"Translating lines: line {count} of {self.FileLen}")
             count += 1
 
     def Bleu_Scores(self,filename2 = FILENAME2):
-        ref = []
-        firstAPIscores = []
-        SecondAPIscores = []
-        textLanguage = open(filename2, "r",encoding="utf-8")
-        linesLanguage = textLanguage.readlines()
-        for lineLanguage in linesLanguage:
-            firstAPIscores.append(sentence_bleu(self.Traduction1List,lineLanguage))
-            SecondAPIscores.append(sentence_bleu(self.Traduction2List,lineLanguage))
+        first_api_scores = []
+        second_api_scores = []
+        text_language = open(filename2, "r",encoding="utf-8")
+        lines_language = text_language.readlines()
+        for lineLanguage in lines_language:
+            first_api_scores.append(sentence_bleu(self.traduction_1List,lineLanguage))
+            second_api_scores.append(sentence_bleu(self.traduction_2List,lineLanguage))
 
         #Average score
-        AverageFirstAPI = np.mean(firstAPIscores)
-        AverageSecondAPI = np.mean(SecondAPIscores)
+        average_first_api = np.mean(first_api_scores)
+        average_second_api = np.mean(second_api_scores)
 
         print(f'\n{"":=^60}\n{"Average of Bleu Scores":=^60}\n{"":=^60}\n')
-        print(f'\n{"":=^60}\n"First API Scores" {AverageFirstAPI}\n{"":=^60}\n')
-        print(f'{"":=^60}\n"Second API Scores" {AverageSecondAPI}\n{"":=^60}\n')
-        return AverageFirstAPI, AverageSecondAPI
+        print(f'\n{"":=^60}\n"First API Scores" {average_first_api}\n{"":=^60}\n')
+        print(f'{"":=^60}\n"Second API Scores" {average_second_api}\n{"":=^60}\n')
+        return average_first_api, average_second_api

@@ -9,8 +9,8 @@ from MainFolder.Activity3Class import Translation_APIS
 
 #filename_Activity1 = 'tiny_movie_reviews_dataset.txt'
 #Sentiment_Analysis_Object = Sentiment_Analysis(filename_Activity1)
-#Sentiment_Analysis_Object = Sentiment_Analysis()
-#Sentiment_Analysis_Object.prediction()
+Sentiment_Analysis_Object = Sentiment_Analysis()
+Sentiment_Analysis_Object.prediction()
 
 #Task 2
 

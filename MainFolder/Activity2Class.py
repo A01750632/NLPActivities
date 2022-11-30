@@ -62,10 +62,10 @@ class NER_training_model:
         
     def plot(self):
         '''Function to plot the results of the training'''
-        trainLog = pd.read_csv(LOSS_TSV, sep='\t')
-        print(trainLog)
-        plt.plot(trainLog["EPOCH"],trainLog["TRAIN_LOSS"],'r--')
-        plt.plot(trainLog["EPOCH"],trainLog["DEV_LOSS"],'y')
+        train_log = pd.read_csv(LOSS_TSV, sep='\t')
+        print(train_log)
+        plt.plot(train_log["EPOCH"],train_log["TRAIN_LOSS"],'r--')
+        plt.plot(train_log["EPOCH"],train_log["DEV_LOSS"],'y')
         plt.title('Loss')
         plt.legend(["TRAIN LOSS", "DEV LOSS"], loc ="upper right")
         plt.show()
