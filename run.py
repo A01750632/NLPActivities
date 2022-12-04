@@ -19,11 +19,11 @@ Sentiment_Analysis_Object.prediction()
 
 #Ner_training_model_Object = NER_training_model(PERCENT_OF_DATASET_TO_TRAIN)
 #the default value of PERCENT_OF_DATASET_TO_TRAIN is 0.1
-'''Ner_training_model_Object = NER_training_model()
+Ner_training_model_Object = NER_training_model()
 #the learning_rate, max_epochs, mini_batch_size
 # Ner_training_model_Object.train(self,learning_rate = 0.02, max_epochs = 10, mini_batch_size = 32)
 Ner_training_model_Object.train()
-Ner_training_model_Object.plot()'''
+Ner_training_model_Object.plot()
 
 
 #Task 3
