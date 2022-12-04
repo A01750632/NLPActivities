@@ -1,4 +1,4 @@
-# NLPActivities (Imporved)
+# NLPActivities (improved)
 
 ### Requirements.txt
 
