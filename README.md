@@ -1,4 +1,4 @@
-# NLPActivities
+# NLPActivities (Imporved)
 
 ### Requirements.txt
 
@@ -39,8 +39,10 @@ below the "Test Endpoint" blue button on the "Header Parameters" section, the ke
 
 ### Test
 
-All the test are on the file test.py if you run this file, the test are run automatically
- 
+To run the test you need to run "python -m unittest" command in the terminal, make sure you have all the libraries already installed and that the command is running on the MainFolder Path:
+![image](https://user-images.githubusercontent.com/65176402/205518354-56514ad3-e6b2-4a18-8ff5-9a1e5d78a51b.png)
+![image](https://user-images.githubusercontent.com/65176402/205518380-258b1c3f-f879-406c-8b5a-29afe87f48ba.png)
+
 ### Run the main code of the tasks
 
 to run it just simply run the "run.py" file, that it already contains the instructions to run the code
